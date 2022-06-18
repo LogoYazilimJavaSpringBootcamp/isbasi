@@ -19,7 +19,6 @@ public class CustomerService {
 	private OrderService orderService;
 
 	@Autowired
-	@Qualifier("myProductService")
 	private ProductService productService;
 
 	public CustomerService(OrderService orderService) {
