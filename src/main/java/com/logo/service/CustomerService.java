@@ -5,12 +5,12 @@ import java.util.List;
 import java.util.Random;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import com.logo.model.Customer;
 import com.logo.model.Order;
 import com.logo.model.Product;
+import com.logo.model.enums.CustomerTpe;
 
 @Service
 public class CustomerService {
@@ -30,10 +30,9 @@ public class CustomerService {
 	}
 
 	public Customer create(String name) {
-		Customer customer = new Customer(name, 25, new ArrayList<>());
+		Customer customer = Customer.builder().name("Cem").age(28).customerType(CustomerTpe.Customer).build();
 
 		System.out.println("orderService:" + orderService.toString());
-		// orderService.createOrder();
 
 		System.out.println("productService:" + productService.toString());
 
@@ -42,12 +41,8 @@ public class CustomerService {
 
 	private List<Customer> prepareCustomerList() {
 		List<Customer> customers = new ArrayList<>();
-		customers.add(new Customer("bilisim.io", 25, new ArrayList<>()));
-		customers.add(new Customer("cem", 30, prepareOrderList()));
-		customers.add(new Customer("ömer", 21, prepareOrderList()));
-		customers.add(new Customer("haluk", 32, prepareOrderList()));
-		customers.add(new Customer("halil", 25, prepareOrderList()));
-		customers.add(new Customer("fatih", 18, prepareOrderList()));
+		customers.add(Customer.builder().name("Cem").age(28).customerType(CustomerTpe.Customer).build());
+		customers.add(Customer.builder().name("Emir").age(28).customerType(CustomerTpe.Customer).build());
 		return customers;
 	}
 

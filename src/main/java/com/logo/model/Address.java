@@ -1,9 +1,22 @@
 package com.logo.model;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+@Entity
 public class Address {
 
+	@Id
+	@GeneratedValue(strategy = GenerationType.SEQUENCE)
+	private Integer id;
+	@Column(name = "country", nullable = true)
 	private String country;
+	@Column(name = "province", nullable = true)
 	private String province;
+	@Column(name = "address", nullable = true)
 	private String address;
 
 	public Address(String country, String province, String address) {

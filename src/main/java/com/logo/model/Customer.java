@@ -1,18 +1,34 @@
 package com.logo.model;
 
-import java.util.List;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
+import com.logo.model.enums.CustomerTpe;
+
+import lombok.Builder;
+
+@Entity
+@Builder
 public class Customer {
 
+	@Id
+	@GeneratedValue(strategy = GenerationType.SEQUENCE)
+	private Integer id;
 	private String name;
 	private int age;
-	private List<Order> orderList;
+	@Enumerated(EnumType.ORDINAL)
+	private CustomerTpe customerType;
 
-	public Customer(String name, int age, List<Order> orderList) {
-		super();
-		this.name = name;
-		this.age = age;
-		this.orderList = orderList;
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
 	}
 
 	public String getName() {
@@ -31,12 +47,12 @@ public class Customer {
 		this.age = age;
 	}
 
-	public List<Order> getOrderList() {
-		return orderList;
+	public CustomerTpe getCustomerType() {
+		return customerType;
 	}
 
-	public void setOrderList(List<Order> orderList) {
-		this.orderList = orderList;
+	public void setCustomerType(CustomerTpe customerType) {
+		this.customerType = customerType;
 	}
 
 }
