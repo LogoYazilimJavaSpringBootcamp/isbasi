@@ -1,18 +1,26 @@
 package com.logo.model;
 
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 import com.logo.model.enums.CustomerTpe;
 
+import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.NoArgsConstructor;
 
 @Entity
 @Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class Customer {
 
 	@Id
@@ -22,6 +30,8 @@ public class Customer {
 	private int age;
 	@Enumerated(EnumType.ORDINAL)
 	private CustomerTpe customerType;
+	
+	private User user;
 
 	public Integer getId() {
 		return id;

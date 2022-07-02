@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import com.logo.model.Customer;
 import com.logo.model.Order;
 import com.logo.model.Product;
+import com.logo.model.User;
 import com.logo.model.enums.CustomerTpe;
 
 @Service
@@ -30,6 +31,9 @@ public class CustomerService {
 	}
 
 	public Customer create(String name) {
+		
+		User user = null;
+		
 		Customer customer = Customer.builder().name("Cem").age(28).customerType(CustomerTpe.Customer).build();
 
 		System.out.println("orderService:" + orderService.toString());

@@ -1,5 +1,7 @@
 package com.logo.service;
 
+import java.math.BigDecimal;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -8,7 +10,10 @@ import org.springframework.amqp.core.AmqpTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.logo.client.PaymentClient;
+import com.logo.dto.CurrencyType;
 import com.logo.dto.EmailDto;
+import com.logo.dto.Payment;
 import com.logo.model.Address;
 import com.logo.model.Customer;
 import com.logo.model.User;
@@ -28,6 +33,9 @@ public class UserService {
 
 	@Autowired
 	private AmqpTemplate rabbitTemplate;
+	
+	@Autowired
+	private PaymentClient paymentClient;
 
 	public User createUser(User user) {
 		rabbitTemplate.convertAndSend("isbasi.email", new EmailDto("user@gmail.com", "Java Dev",
@@ -44,6 +52,16 @@ public class UserService {
 		customers.add(Customer.builder().name("Sevim").build());
 		customers.add(Customer.builder().name("Gizem").build());
 		customers.add(Customer.builder().name("Çağla").build());
+		
+		Customer customer = new Customer();
+		customer.setAge(5);
+		customers.add(customer);
+		
+		Payment payment = paymentClient.createPayment(new Payment(LocalDateTime.now(), CurrencyType.TL,BigDecimal.TEN));
+		
+		
+		log.info(payment.toString());
+		
 		user.setCustomerList(customers);
 		return userRepository.save(user);
 	}
