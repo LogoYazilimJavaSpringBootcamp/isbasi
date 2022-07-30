@@ -16,7 +16,7 @@ public interface UserRepository extends JpaRepository<User, Integer> {
 
 	List<User> findByEmailAndName(String email, String name);
 
-	List<User> findByEmailAndNameAndAddress_Country(String email, String name, String country);
+	//List<User> findByEmailAndNameAndAddress_Country(String email, String name, String country);
 
 	@Query(value = "Select * from User where name=?", nativeQuery = true)
 	List<User> findByEmailAndName(String email, String name, String string);

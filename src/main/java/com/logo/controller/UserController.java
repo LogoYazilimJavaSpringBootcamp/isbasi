@@ -52,10 +52,10 @@ public class UserController {
 	public User getUserByEmail(@PathVariable String email) {
 		return userService.getUserByEmail(email);
 	}
-
-	@GetMapping(value = "/{email}/customers")
-	public List<Customer> getCustomersUserByEmail(@PathVariable String email) {
-		return userService.getCustomersByEmail(email);
-	}
+//
+//	@GetMapping(value = "/{email}/customers")
+//	public List<Customer> getCustomersUserByEmail(@PathVariable String email) {
+//		return userService.getCustomersByEmail(email);
+//	}
 
 }

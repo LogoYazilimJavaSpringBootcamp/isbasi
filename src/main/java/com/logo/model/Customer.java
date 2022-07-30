@@ -1,15 +1,13 @@
 package com.logo.model;
 
-import java.util.List;
-
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
+import javax.persistence.ManyToOne;
 
 import com.logo.model.enums.CustomerTpe;
 
@@ -30,7 +28,7 @@ public class Customer {
 	private int age;
 	@Enumerated(EnumType.ORDINAL)
 	private CustomerTpe customerType;
-	
+	@ManyToOne(fetch = FetchType.LAZY)
 	private User user;
 
 	public Integer getId() {

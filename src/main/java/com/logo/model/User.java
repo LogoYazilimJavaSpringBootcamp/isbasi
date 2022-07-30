@@ -8,6 +8,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -35,12 +36,12 @@ public class User {
 	private String password;
 	@Enumerated(EnumType.ORDINAL)
 	private FirmType firmType;
-	@OneToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "address_id", insertable = true, updatable = false)
-	private Address address;
-	@OneToMany(cascade = CascadeType.ALL)
-	@JoinColumn(name = "customer_id", insertable = true, updatable = false)
-	private List<Customer> customerList = new ArrayList<>(10);
+//	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+//	@JoinColumn(name = "address_id", insertable = true, updatable = false)
+//	private Address address;
+//	@OneToMany(targetEntity = Customer.class, cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+//	@JoinColumn(name = "customer_id", insertable = true, updatable = false)
+//	private List<Customer> customerList = new ArrayList<>(10);
 
 	public String getName() {
 		return name;
@@ -89,21 +90,21 @@ public class User {
 	public void setFirmType(FirmType firmType) {
 		this.firmType = firmType;
 	}
-
-	public Address getAddress() {
-		return address;
-	}
-
-	public void setAddress(Address address) {
-		this.address = address;
-	}
-
-	public List<Customer> getCustomerList() {
-		return customerList;
-	}
-
-	public void setCustomerList(List<Customer> customerList) {
-		this.customerList = customerList;
-	}
+//
+//	public Address getAddress() {
+//		return address;
+//	}
+//
+//	public void setAddress(Address address) {
+//		this.address = address;
+//	}
+//
+//	public List<Customer> getCustomerList() {
+//		return customerList;
+//	}
+//
+//	public void setCustomerList(List<Customer> customerList) {
+//		this.customerList = customerList;
+//	}
 
 }
